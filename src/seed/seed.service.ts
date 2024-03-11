@@ -51,9 +51,9 @@ export class SeedService {
     this.logger.log('Suppliers seeded successfully');
   }
 
-  // Generate fake data for products
   private generateProductData = async (): Promise<Promise<any>> => {
     const name = faker.commerce.productName();
+    const soldCount = faker.number.int({ min: 0, max: 1000 });
     const variants = Array.from({
       length: faker.number.int({ min: 1, max: 10 }),
     }).map(() => ({
@@ -68,16 +68,13 @@ export class SeedService {
     const category = await this.categoryModel.aggregate([
       { $sample: { size: 1 } },
     ]);
-    console.log({ name, variants, supplier, category });
-    return { name, variants, supplier, category };
+    return { name, soldCount, variants, supplier, category };
   };
 
-  // Generate fake data for categories
   private generateCategoryData = (): any => ({
     name: faker.commerce.department(),
   });
 
-  // Generate fake data for suppliers
   private generateSupplierData = (): any => ({
     name: faker.person.firstName() + ' ' + faker.person.lastName(),
   });
