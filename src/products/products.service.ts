@@ -43,6 +43,9 @@ export class ProductsService {
 
     const products = await this.productModel
       .find(dbQuery)
+      .sort({ soldCount: 'desc' })
+      .skip(skip)
+      .limit(pageSize)
       .populate({
         path: 'supplier',
         select: ['name'],
@@ -51,10 +54,8 @@ export class ProductsService {
         path: 'category',
         select: ['name'],
       })
-      .sort({ soldCount: 'desc' })
-      .skip(skip)
-      .limit(pageSize)
-      .lean();
+      .lean()
+      .exec();
 
     return new GetSearchProductsResponse(products, totalPages);
   }
