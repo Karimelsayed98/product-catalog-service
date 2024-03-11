@@ -31,14 +31,14 @@ npm install
 ## Running the app
 
 ```bash
-# development
+# Start Redis server
+$ docker-compose up
+
+# Run app
 $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
@@ -69,4 +69,5 @@ $ curl -X GET http://localhost:3000/products/search?query=
 ```
 
 ### For more info kindly check out this document
+
 <https://docs.google.com/document/d/1UHLIX171mBpmdZ7juD5ffikAr8c6QGU0-74WSouQ7C0/edit?usp=sharing>

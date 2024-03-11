@@ -12,4 +12,6 @@ const fromEnv = (name: string, defaultValue?: string) => {
 
 export const config = {
   mongoUrl: fromEnv('MONGO_URL'),
+  redisHost: fromEnv('REDIS_HOST'),
+  redisPort: parseInt(fromEnv('REDIS_PORT'), 10),
 };

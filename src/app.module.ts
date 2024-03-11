@@ -3,6 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerModule } from 'nestjs-pino';
 import { randomUUID } from 'node:crypto';
 import { APP_PIPE } from '@nestjs/core';
+import { CacheModule } from '@nestjs/cache-manager';
+import * as redisStore from 'cache-manager-redis-store';
 
 import { config } from './config';
 import { ProductsModule } from './products/products.module';
@@ -58,6 +60,12 @@ import { SeedModule } from './seed/seed.module';
               }
             : undefined,
       },
+    }),
+    CacheModule.register({
+      isGlobal: true,
+      store: redisStore,
+      host: config.redisHost,
+      port: config.redisPort,
     }),
     ProductsModule,
     CategoriesModule,

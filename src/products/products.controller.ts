@@ -1,14 +1,23 @@
-import { Controller, Get, Logger, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Logger,
+  Query,
+  UseInterceptors,
+} from '@nestjs/common';
 
 import { ProductsService } from './products.service';
 import { GetSearchProductsResponse } from './dto/get-search-products.dto';
 import { SearchInternalServerError } from '../common/exceptions/SearchInternalServerError';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('/products')
 export class ProductsController {
   private readonly logger = new Logger(ProductsController.name);
   public constructor(private readonly productsService: ProductsService) {}
 
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(30)
   @Get('/search')
   async search(
     @Query('query') query: string,
