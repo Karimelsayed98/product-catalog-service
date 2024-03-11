@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 
 import { Product } from './schemas/product.schema';
 import { GetSearchProductsResponse } from './dto/get-search-products.dto';
-import { SearchInternalServerError } from 'src/common/exceptions/SearchInternalServerError';
+import { SearchInternalServerError } from '../common/exceptions/SearchInternalServerError';
 
 @Injectable()
 export class ProductsService {

@@ -31,7 +31,6 @@ describe('ProductsService', () => {
   });
 
   it('should return no search results if query does not match any products', async () => {
-    // Mocked data
     const query = 'nonexistent';
     const page = 1;
     const pageSize = 10;
@@ -68,7 +67,6 @@ describe('ProductsService', () => {
   });
 
   it('should return search results if query matches products', async () => {
-    // Mocked data
     const query = 'product'; // Assume this query matches some products by name
     const page = 1;
     const pageSize = 10;
